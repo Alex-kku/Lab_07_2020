@@ -1,5 +1,7 @@
-#include <header.hpp>
+#include "Suggest.hpp"
 
-int main() {
-
+int main(int argc, char* argv[]) {
+  Server sr;
+  sr.startServer(argc, argv);
+  return 0;
 }
