@@ -41,8 +41,14 @@ add_executable(demo
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/Suggest.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp
         )
-
+add_executable(testing
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/Suggest.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
+        )
 target_include_directories(demo
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+        )
+target_include_directories(testing
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
 
@@ -53,7 +59,13 @@ target_link_libraries(demo
         GTest::gtest_main
         nlohmann_json::nlohmann_json
         )
-
+target_link_libraries(testing
+        Beast::Beast
+        Boost::filesystem
+        Boost::thread
+        GTest::gtest_main
+        nlohmann_json::nlohmann_json
+        )
 enable_testing()
 add_test(NAME unit_tests COMMAND tests)
 
